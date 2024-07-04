@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1067310786198",
+    "project_id": "fadak-32b91",
+    "storage_bucket": "fadak-32b91.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067310786198:android:43c1e196535a69629544b7",
+        "android_client_info": {
+          "package_name": "com.example.task_f99"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBneNbRIqQkwJpDiw7gW9kJsCe7iw2xOgs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
