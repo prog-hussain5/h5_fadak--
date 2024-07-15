@@ -1,20 +1,23 @@
-// ignore_for_file: camel_case_types, unused_field, non_constant_identifier_names, unnecessary_cast
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_f99/edit_profile.dart';
 
-class hmoe_page extends StatefulWidget {
-  const hmoe_page({super.key});
+class Profile extends StatefulWidget {
+  const Profile({super.key});
 
   @override
-  State<hmoe_page> createState() => _hmoe_pageState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _hmoe_pageState extends State<hmoe_page> {
-  final myAcount = FirebaseAuth.instance.currentUser!;
+class _ProfileState extends State<Profile> {
+    final myAcount = FirebaseAuth.instance.currentUser!;
   File? _selectimage;
   String? imagePath;
 
@@ -26,16 +29,7 @@ class _hmoe_pageState extends State<hmoe_page> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
-        centerTitle: true,
-        title: const Text(
-          "Hello Fadak  🦉🐈 ^_^",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: Container(
+    return Container(
           decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -162,6 +156,7 @@ class _hmoe_pageState extends State<hmoe_page> {
                           )),
                     ],
                   ),
+                  ElevatedButton(onPressed: (){ getimage_in_camera();}, child: const Text("add image")),
                   Text(
                     myAcount.email!,
                     style: const TextStyle(
@@ -180,7 +175,10 @@ class _hmoe_pageState extends State<hmoe_page> {
                             MaterialStatePropertyAll<Color>(Colors.red),
                       ),
                       onPressed: () {
+                        GoogleSignIn googleSignIn = GoogleSignIn();
+                        googleSignIn.disconnect();
                         FirebaseAuth.instance.signOut();
+
                       },
                       child: const Text(
                         "Sign Out ",
@@ -192,9 +190,9 @@ class _hmoe_pageState extends State<hmoe_page> {
                 ],
               ),
             ],
-          )),
-    );
+          ));
   }
+
 
 //*********************************************************************** */
 
@@ -244,4 +242,5 @@ class _hmoe_pageState extends State<hmoe_page> {
       imagePath = null;
     });
   }
+
 }

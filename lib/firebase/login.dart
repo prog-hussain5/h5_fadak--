@@ -2,6 +2,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
 
 class login_screen extends StatefulWidget {
   const login_screen({super.key});
@@ -13,9 +15,9 @@ class login_screen extends StatefulWidget {
 class _login_screenState extends State<login_screen> {
 ///////////////////////////////////////////////////////
 
-  final  _email = TextEditingController();
+  final _email = TextEditingController();
   final _password = TextEditingController();
-    bool _obscureText = true;
+  bool _obscureText = true;
 
   Future login() async {
     if (check_enter_user()) {
@@ -46,6 +48,30 @@ class _login_screenState extends State<login_screen> {
           });
     }
   }
+
+  Future signInWithGoogle() async {
+  // Trigger the authentication flow
+  final  googleUser = await GoogleSignIn().signIn();
+
+  if (googleUser == null) {
+     return  ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('You have not specified an account')));
+  }
+  // Obtain the auth details from the request
+  final  googleAuth = await googleUser.authentication;
+
+  // Create a new credential
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth.accessToken,
+    idToken: googleAuth.idToken,
+  );
+
+  // Once signed in, return the UserCredential
+  return await FirebaseAuth.instance.signInWithCredential(credential);
+}
+
+
+
 
   bool check_enter_user() {
     if (_email.text.trim() != "" && _password.text.trim() != "") {
@@ -97,7 +123,7 @@ class _login_screenState extends State<login_screen> {
                     style: GoogleFonts.robotoCondensed(fontSize: 20)),
               ),
               const SizedBox(
-                height: 40,
+                height: 20,
               ),
               //email textfild
               Padding(
@@ -111,14 +137,13 @@ class _login_screenState extends State<login_screen> {
                     child: TextField(
                       controller: _email,
                       decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          hintText: "E-mail"),
+                          border: InputBorder.none, hintText: "E-mail"),
                     ),
                   ),
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
               //password textfild
               Padding(
@@ -127,27 +152,29 @@ class _login_screenState extends State<login_screen> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
                     controller: _password,
-                      obscureText: _obscureText,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        border: const OutlineInputBorder(),
-                        prefixIcon: const Icon(Icons.lock),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _obscureText ? Icons.visibility : Icons.visibility_off,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
+                    obscureText: _obscureText,
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      border: const OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.lock),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                         ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureText = !_obscureText;
+                          });
+                        },
                       ),
                     ),
+                  ),
                 ),
               ),
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
               // sign in botton
               Padding(
@@ -171,8 +198,17 @@ class _login_screenState extends State<login_screen> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: InkWell (
+                  onTap: signInWithGoogle,
+                    child: Image.network(
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6WwgH7Nl5_AW9nDCnR2Ozb_AU3rkIbSJdAg&s",
+                  height: 50,
+                )),
+              ),
               const SizedBox(
-                height: 15,
+                height: 5,
               ),
               // text  to sign up
               Row(
