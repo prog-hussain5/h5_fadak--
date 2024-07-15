@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:task_f99/filter/add_filter.dart';
+import 'package:task_f99/filter/view_filtter.dart';
 import 'package:task_f99/firebase/profile.dart';
 import 'package:task_f99/firestore/Home.dart';
 import 'package:task_f99/firestore/profile.dart';
@@ -21,7 +23,10 @@ class _hmoe_pageState extends State<hmoe_page> {
   final List<Widget> _pages = [
     const Home(),
     const Profile(),
-    const F_profile()
+    const F_profile(),
+    const AddFirebase_filttering(),
+    const view_filtter()
+
 
   ];
 /////
@@ -43,7 +48,7 @@ class _hmoe_pageState extends State<hmoe_page> {
         color: const Color.fromARGB(255, 161, 54, 232),
         padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         child:  GNav(
-          gap: 40,
+          gap: 5,
           activeColor: Colors.white,
           iconSize: 25,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -63,6 +68,14 @@ class _hmoe_pageState extends State<hmoe_page> {
              GButton(
               icon: Icons.person,
               text: 'f_Profile',
+            ),
+             GButton(
+              icon: Icons.filter_1,
+              text: 'filtter',
+            ),
+              GButton(
+              icon: Icons.view_agenda,
+              text: 'filtter',
             ),
           ],
           selectedIndex: _selectedIndex,
