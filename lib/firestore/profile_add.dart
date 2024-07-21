@@ -94,6 +94,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.phone),
                   ),
+                  maxLength: 11,
                   keyboardType: TextInputType.phone,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -113,6 +114,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.calendar_today),
                   ),
+                  maxLength: 2,
                   keyboardType: TextInputType.phone,
                   validator: (value) {
                     if (value == null || value.isEmpty) {

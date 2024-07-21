@@ -72,7 +72,9 @@ class _F_profileState extends State<F_profile> {
             ])),
         child: Column(
           children: [
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Expanded(
               child: ListView.builder(
                 itemCount: data.length,
@@ -87,6 +89,7 @@ class _F_profileState extends State<F_profile> {
                             border: OutlineInputBorder(),
                             prefixIcon: Icon(Icons.person),
                           ),
+                          enabled: false,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your name';
@@ -102,6 +105,7 @@ class _F_profileState extends State<F_profile> {
                             border: OutlineInputBorder(),
                             prefixIcon: Icon(Icons.phone),
                           ),
+                          enabled: false,
                           keyboardType: TextInputType.phone,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
@@ -121,6 +125,7 @@ class _F_profileState extends State<F_profile> {
                             border: OutlineInputBorder(),
                             prefixIcon: Icon(Icons.calendar_today),
                           ),
+                          enabled: false,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please enter your age';
@@ -136,6 +141,7 @@ class _F_profileState extends State<F_profile> {
                             border: OutlineInputBorder(),
                             prefixIcon: Icon(Icons.description),
                           ),
+                          enabled: false,
                           maxLines: 5,
                           validator: (value) {
                             if (value == null || value.isEmpty) {

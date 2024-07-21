@@ -24,7 +24,7 @@ class _view_filtterState extends State<view_filtter> {
   Future<void> getData() async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('filtter').orderBy("age",descending: true)
+          .collection('filtter')
           .get();
       setState(() {
         data = querySnapshot.docs.map((doc) {

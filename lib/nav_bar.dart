@@ -51,7 +51,7 @@ class _hmoe_pageState extends State<hmoe_page> {
           gap: 5,
           activeColor: Colors.white,
           iconSize: 25,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           duration: const Duration(milliseconds: 400),
           tabBackgroundColor: Colors.blueAccent,
           color: Colors.black,
